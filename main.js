@@ -35,7 +35,6 @@ var getGenesisBlock = () => {
 
 var blockchain = [getGenesisBlock()];
 
-//--------------------------------------------------------------------------------------------
 
 var stringToCharIndex = (sun) => {
     var summa = 0;
@@ -47,7 +46,9 @@ var stringToCharIndex = (sun) => {
     return parseInt(summa * Math.exp(difficulty));
 };
 
-//--------------------------------------------------------------------------------------------
+
+
+
 var initHttpServer = () => {
     var app = express();
     app.use(bodyParser.json());
