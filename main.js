@@ -30,21 +30,21 @@ var MessageType = {
 
 var getGenesisBlock = () => {
     return new Block(0, "0", 1682839690, "RUT-MIIT first block",
-     "4700004", 0, 0);
+     "8d9d5a7ff4a78042ea6737bf59c772f8ed27ef3c9b576eac1976c91aaf48d2de", 0, 0);
 };
 
 var blockchain = [getGenesisBlock()];
 
 //--------------------------------------------------------------------------------------------
 
-var myHashFunction = (sun) => {
+var stringToCharIndex = (sun) => {
     var summa = 0;
     this.sun = sun.toString;
     for (let i=0; i<sun.length; i++){
       summa= parseInt(sun[i].charCodeAt(0)) + summa; 
     //  console.log(sun[i] + "---- " + sun[i].charCodeAt(0) + "---------"+ summa);
     };
-    return parseInt(summa);
+    return parseInt(summa * Math.exp(difficulty));
 };
 
 //--------------------------------------------------------------------------------------------
@@ -161,8 +161,8 @@ var calculateHashForBlock = (block) => {
 var calculateHash = (index, previousHash, timestamp, data, nonce) => {
     //console.log(index + "--" + myHashFunction(index) + "\n" + timestamp +"--" +  myHashFunction(timestamp) +"\n" + data + "--" + myHashFunction(data) +"\n");
     return (
-        Math.ceil(Math.sin(myHashFunction(index))*Math.exp(difficulty)  + Math.cos(myHashFunction(data))*Math.exp(difficulty)+ 
-        myHashFunction(timestamp) + nonce*Math.exp(difficulty) + parseInt(previousHash) + myHashFunction(previousHash))
+        Math.ceil(Math.sin(stringToCharIndex(index))*Math.exp(difficulty)  + Math.cos(stringToCharIndex(data))*Math.exp(difficulty)+ 
+        stringToCharIndex(timestamp) + nonce*Math.exp(difficulty) + parseInt(previousHash) + stringToCharIndex(previousHash))
         );
 };
 
